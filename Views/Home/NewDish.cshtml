@@ -1,0 +1,64 @@
+@model Dish
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chefs Dishes</title>
+    <link rel="stylesheet" href="~/css/newdish.css"/>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1 class="text-center">Add a Dish!</h1>
+    <br>
+    <form asp-action="AddDish" asp-controller="Home" method="post">
+        <span asp-validation-for="Name" class="text-danger mr-4"></span>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="Name">Name of Dish</label>
+                <input type="text" class="form-control" id="Name" asp-for="Name">
+            </div>
+            <div class="form-group col-md-4">
+                <span asp-validation-for="ChefId" class="text-danger mr-5"></span>
+                <label id="ChefId" asp-for="ChefId">Chef</label>
+                <select class="form-control" id="ChefId" asp-for="ChefId">
+                @foreach(var chef in ViewBag.Chef)
+                {
+                    <option value="@chef.ChefId">@chef.FirstName @chef.LastName</option>
+                }
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <span asp-validation-for="Tastiness" class="text-danger mr-5"></span>
+                <label asp-for="Tastiness">Tastiness</label>
+                <select class="form-control" id="Tastiness" asp-for="Tastiness">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+        </div>
+        <span asp-validation-for="Calories" class="text-danger"></span>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="Calories"># of Calories</label>
+                <input type="text" class="form-control" id="Calories" asp-for="Calories">
+            </div>
+        </div>
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="Description">Description</label>
+                <textarea type="text" class="form-control" id="Description" asp-for="Description"></textarea>
+            </div>
+            <div class="form-group col-md-4 text-center">
+                <button type="submit">Add Dish</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

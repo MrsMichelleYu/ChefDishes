@@ -1,0 +1,51 @@
+﻿@model List<Chef>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chefs Dishes</title>
+</head>
+<body>
+    <h5 class="text-right"><a href="/new">Add a Chef</a></h5>
+    <h1 class="text-center"><a class="border-right pr-5" href="/"><u>Chefs</u></a><a class="ml-5" href="/dishes">Dishes</a></h1>
+    <h3>Check out our roster of Chefs!</h3>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col"># of Dishes</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var chef in Model)
+        { 
+            var today = DateTime.Now.Year;
+            var birthday = (DateTime)chef.Birthday;
+            var age = today - birthday.Year;
+            <tr>
+                <th scope="row">@chef.FirstName @chef.LastName</th>
+                <td>@age</td>
+                <td>@chef.CreatedDishes.Count</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+
+<!-- @{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> -->
